@@ -46,9 +46,14 @@ class User extends Authenticatable implements JWTSubject
     /**
     * @return \Illuminate\Database\Eloquent\Relations\HasMany
     */
-    public function projects(){
-    $propertyInProject="user_id";
-    $propertyForeignWithProject="id";
-    return $this->hasMany(Project::class,$propertyInProject,$propertyForeignWithProject);
-    }
+
+     public function getJWTIdentifier()
+     {
+     return $this->getKey();
+     }
+     public function getJWTCustomClaims()
+     {
+     return [];
+     }
+
 }
