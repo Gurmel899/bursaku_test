@@ -23,7 +23,7 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
     ];
-
+protected $guarded = [];
     /**
      * The attributes that should be hidden for serialization.
      *
