@@ -25,7 +25,7 @@ Route::resource('motors', MotorController::class);
 Route::resource('mobils', MobilController::class);
 Route::resource('kendaraans', KendaraanController::class);
  Route::post('register', 'UserController@register');
-    Route::post('validasi', 'UserController@authenticate');
+    Route::post('login', 'UserController@authenticate');
     Route::get('kendaraanAuth', 'DataController@kendaraanAuth');
 
     Route::group(['middleware' => ['jwt.verify']], function() {
