@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 
 class DataController extends Controller
 {
-  public function book() {
-  $data = "Data All Book";
+  public function kendaraan() {
+  $data = "Data All kendaraan";
   return response()->json($data, 200);
   }
 
-  public function bookAuth() {
+  public function kendaraanAuth() {
   $data = "Welcome " . Auth::user()->name;
   return response()->json($data, 200);
   }
