@@ -3,6 +3,7 @@
 use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\MotorController;
 use App\Http\Controllers\MobilController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,18 +18,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-// Route::resource('Kendaraans', KendaraanController::class);
-Route::resource('motors', MotorController::class);
-Route::resource('mobils', MobilController::class);
-Route::resource('kendaraans', KendaraanController::class);
- Route::post('register', 'UserController@register');
-    Route::post('login', 'UserController@authenticate');
-    Route::get('kendaraanAuth', 'DataController@kendaraanAuth');
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+// // Route::resource('Kendaraans', KendaraanController::class);
+// Route::resource('motors', MotorController::class);
+// Route::resource('mobils', MobilController::class);
+// Route::resource('kendaraans', KendaraanController::class);
+Route::post('register', [UserController::class, 'register']);
+Route::post('login', 'UserController@authenticate');
+Route::get('kendaraanAuth', 'DataController@kendaraanAuth');
 
-    Route::group(['middleware' => ['jwt.verify']], function() {
-        Route::get('user', 'UserController@getAuthenticatedUser');
-        Route::get('kendaraan', 'DataController@kendaraan');
-    });
+Route::group(['middleware' => ['jwt.verify']], function() {
+    Route::get('user', 'UserController@getAuthenticatedUser');
+    Route::get('kendaraan', 'DataController@kendaraan');
+});
