@@ -24,3 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('motors', MotorController::class);
 Route::resource('mobils', MobilController::class);
 Route::resource('kendaraans', KendaraanController::class);
+Route::post('register', 'UserController@register');
+Route::post('login', 'UserController@login');
+Route::get('book', 'BookController@book');
+
+Route::get('bookall', 'BookController@bookAuth')->middleware('jwt.verify');
+Route::get('user', 'UserController@getAuthenticatedUser')->middleware('jwt.verify')
