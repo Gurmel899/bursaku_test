@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\MotorController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\MobilController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -26,10 +27,10 @@ use Illuminate\Support\Facades\Route;
 // Route::resource('mobils', MobilController::class);
 // Route::resource('kendaraans', KendaraanController::class);
 Route::post('register', [UserController::class, 'register']);
-Route::get('kendaraanAuth', 'DataController@kendaraanAuth');
-Route::post('login', 'UserController@authenticate');
+Route::post('login', [UserController::class,'authenticate']);
+Route::get('kendaraanAuth', [DataController::class, 'kendaraanAuth']);
 
+Route::get('user', [UserController::class,'getAuthenticatedUser']);
 Route::group(['middleware' => ['jwt.verify']], function() {
-    Route::get('user', 'UserController@getAuthenticatedUser');
-    Route::get('kendaraan', 'DataController@kendaraan');
+Route::get('kendaraan', [DataController::class, 'kendaraan']);
 });

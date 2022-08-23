@@ -39,15 +39,46 @@ class KendaraanController extends Controller
      */
     public function store(Request $request)
     {
+        // $vehicleType = $request->vehicleType
+        //     if ($vehicleType==1) {
+        //     }
         $kendaraan =Kendaraan::create([
-        "tahun_keluaran"=>$request->tahun_keluaran,
-        "warna"=>$request->warna,
-        "harga"=>$request->harga
+        "tahun_keluaran"=>$request->production_date,
+        "warna"=>$request->calor,
+        "harga"=>$request->price
+    ]);
+        $mobil =Mobil::create([
+        "mesin"=>$request->machine,
+        "kapasitas_penumpang"=>$request->passenger_capacity,
+        "tipe"=>$request->type,
+        "kendaraan_id"=>$request->vehicle_id
         ]);
+
+         $motor =Motor::create([
+         "mesin"=>$request->machine,
+         "tipe_suspensi"=>$request->suspension_type,
+         "tipe_transmisi"=>$request->transmision_type,
+         "kendaraan_id"=>$request->vehicle_id
+         ]);
+         $validator = Validator::make($request->all(), [
+         'tahun_keluaran' => 'required|string|max:255',
+         'warna' => 'required|string|max:255',
+         'harga' => 'required|string|max:255',
+         'mesin' => 'required|string|motor|max:255',
+         'tipe_suspensi' => 'required|string|max:255',
+         'tipe_transmisi' => 'required|string|max:255',
+         'mesin' => 'required|string|mobil|max:255',
+         'kapasitas_penumpang' => 'required|string|max:255',
+         'tipe' => 'required|string|max:255',
+         ]);
+        if($validator->fails()){
+        return response()->json($validator->errors()->toJson(), 400);
+        }
         return response()->json([
         'data'=>$kendaraan
         ]);
     }
+
 
     /**
      * Display the specified resource.

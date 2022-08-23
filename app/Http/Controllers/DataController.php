@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class DataController extends Controller
 {
   public function kendaraan() {
-  $data = "Data All kendaraan";
+  $data = "Berhasil Login";
   return response()->json($data, 200);
   }
 
