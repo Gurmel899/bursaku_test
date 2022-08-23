@@ -26,8 +26,8 @@ use Illuminate\Support\Facades\Route;
 // Route::resource('mobils', MobilController::class);
 // Route::resource('kendaraans', KendaraanController::class);
 Route::post('register', [UserController::class, 'register']);
-Route::post('login', 'UserController@authenticate');
 Route::get('kendaraanAuth', 'DataController@kendaraanAuth');
+Route::post('login', 'UserController@authenticate');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user', 'UserController@getAuthenticatedUser');
