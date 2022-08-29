@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 // // Route::resource('Kendaraans', KendaraanController::class);
 // Route::resource('motors', MotorController::class);
 // Route::resource('mobils', MobilController::class);
-// Route::resource('kendaraans', KendaraanController::class);
+Route::resource('kendaraans', KendaraanController::class);
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class,'authenticate']);
 Route::get('kendaraanAuth', [DataController::class, 'kendaraanAuth']);

@@ -39,10 +39,10 @@ class MotorController extends Controller
     public function store(Request $request)
     {
         $motor =Motor::create([
-            "mesin"=>$request->mesin,
+            "mesin"=>$request->machine,
             "tipe_suspensi"=>$request->tipe_suspensi,
             "tipe_transmisi"=>$request->tipe_transmisi,
-            "kendaraan_id"=>$request->kendaraan_id
+            // "kendaraan_id"=>$request->kendaraan_id
         ]);
          return response()->json([
             'data'=>$motor
@@ -82,10 +82,10 @@ class MotorController extends Controller
      */
     public function update(Request $request, Motor $motor)
     {
-        $motor->mesin=$request->mesin;
-        $motor->tipe_suspensi=$request->tipe_suspensi;
-        $motor->tipe_transmisi=$request->tipe_transmisi;
-        $motor->kendaraan_id=$request->kendaraan_id;
+        $motor->mesin=$request->machine;
+        $motor->tipe_suspensi=$request->suspension_type;
+        $motor->tipe_transmisi=$request->transmision_type;
+        // $motor->kendaraan_id=$request->vehicle_id;
         $motor->save();
     }
 

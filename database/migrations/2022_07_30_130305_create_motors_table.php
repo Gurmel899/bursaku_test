@@ -15,7 +15,6 @@ class CreateMotorsTable extends Migration
     {
         Schema::create('motors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kendaraan_id');
             $table->string('mesin');
             $table->string('tipe_suspensi');
             $table->string('tipe_transmisi');

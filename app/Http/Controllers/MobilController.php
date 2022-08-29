@@ -42,7 +42,7 @@ class MobilController extends Controller
         "mesin"=>$request->mesin,
         "kapasitas_penumpang"=>$request->kapasitas_penumpang,
         "tipe"=>$request->tipe,
-        "kendaraan_id"=>$request->kendaraa_id
+        // "kendaraan_id"=>$request->kendaraan_id
         ]);
         return response()->json([
         'data'=>$mobil
@@ -85,7 +85,7 @@ class MobilController extends Controller
          $mobil->mesin=$request->mesin;
          $mobil->kapasitas_penumpang=$request->kapasitas_penumpang;
          $mobil->tipe=$request->tipe;
-         $mobil->kendaraan_id=$request->kendaraan_id;
+        //  $mobil->kendaraan_id=$request->kendaraan_id;
          $mobil->save();
     }
 
