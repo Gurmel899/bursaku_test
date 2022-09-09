@@ -13,6 +13,7 @@ class Motor extends Model
 
     public function kendaraan(){
     return $this->belongsTo(kendaraan::class);
+    
     }
 
 }

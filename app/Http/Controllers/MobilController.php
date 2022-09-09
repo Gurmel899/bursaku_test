@@ -14,7 +14,7 @@ class MobilController extends Controller
      */
     public function index()
     {
-         $mobils = Mobil::paginate(10);
+         $mobils = Mobil::all();
          return response()->json([
          'data'=>$mobils
          ]);

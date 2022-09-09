@@ -15,9 +15,50 @@ class KendaraanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public  function getDataModel1(){
+
+         $mobil = Mobil::all();
+         $data  = $mobil->all();
+         return response()->json($data, 200);
+
+     }
+
+     public function getDataModel2(Request $request){
+
+      $data = Mobil::all();
+      $Idmobil =$request->id_mobil;
+      $dataAll= Mobil::where("id",$Idmobil)->first();
+
+      $dataM=$dataAll;
+      $mesin=$dataM["mesin"];
+      $kapasitasP=$dataM["kapasitas_penumpang"];
+      $tipe=$dataM["tipe"];
+
+
+      $result =[
+        'mesin'=>$mesin,
+        'kapasitas_penumpang'=>$kapasitasP,
+        'tipe'=>$tipe,
+      ];
+      return response()->json($result);
+
+
+      return response()->json(
+       $this->mobil,
+       200
+       );
+
+      }
+
+
     public function index()
     {
+
         $kendaraans = Kendaraan::get();
+        // $a= $kendaraans;
+        // $b=$this->getDataModel();
+        // $allData=$a->concat($b);
         return response()->json([
             'stok'=> Kendaraan::get()->count(),
             'data'=>$kendaraans
@@ -48,12 +89,12 @@ class KendaraanController extends Controller
         $vehicleType = $request->vehicleType;
         if ($vehicleType == 1) {
             $data = $request->all();
-            $rules =[
+            $rules =([
                 'mesin' => 'machine',
                 'tipe_suspensi' => 'suspension_type',
                 'tipe_transmisi'=>'transmision_type',
                 // 'kendaraan_id'=>'vehicle_id',
-            ];
+            ]);
         } else {
             $data = $request->all();
             $rules =([
@@ -62,11 +103,12 @@ class KendaraanController extends Controller
                 'tipe'=>'type',
                 // 'kendaraan_id'=> 'vehicle_id',
             ]);
-            var_dump($vehicleType);
+
            }
         $validator = Validator::make($data, $rules);
          if($validator->fails()){
          return response()->json($validator->errors()->toJson(), 400);
+
          }
 
         $kendaraan =Kendaraan::create([
@@ -158,7 +200,6 @@ class KendaraanController extends Controller
          $kendaraan->tahun_keluaran=$request->tahun_keluaran;
          $kendaraan->warna=$request->warna;
          $kendaraan->harga=$request->harga;
-        //  $kendaraan->kendaraan_id->$request->kendaraan_id;
          $kendaraan->save();
     }
 

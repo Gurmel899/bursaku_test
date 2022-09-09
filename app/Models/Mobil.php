@@ -11,7 +11,9 @@ class Mobil extends Model
      protected $table = "mobils";
      protected $guarded = [];
 
+
      public function kendaraan(){
         return $this->belongsTo(kendaraan::class);
+         
      }
 }

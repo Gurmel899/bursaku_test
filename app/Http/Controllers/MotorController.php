@@ -14,7 +14,7 @@ class MotorController extends Controller
      */
     public function index()
     {
-        $motors = Motor::paginate(10);
+        $motors = Motor::all();
         return response()->json([
             'data'=>$motors
         ]);

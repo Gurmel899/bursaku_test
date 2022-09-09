@@ -22,13 +22,17 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-// // Route::resource('Kendaraans', KendaraanController::class);
-// Route::resource('motors', MotorController::class);
-// Route::resource('mobils', MobilController::class);
-Route::resource('kendaraans', KendaraanController::class);
+
+Route::get('getmodel1', [KendaraanController::class,'getDataModel1']);
+Route::get('getmodel2', [KendaraanController::class,'getDataModel2']);
+// Route::post('getmodel2', [KendaraanController::class,'getDataModel2']);
+Route::get('motors', [MotorController::class,'index']);
+Route::get('mobils', [MobilController::class,'index']);
+Route::post('kendaraans', [KendaraanController::class,'index']);
+Route::get('kendaraans', [KendaraanController::class,'index']);
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class,'authenticate']);
-Route::get('kendaraanAuth', [DataController::class, 'kendaraanAuth']);
+Route::get('kendaraanAuth', [DataController::class, 'kendaraanAutclearh']);
 
 Route::get('user', [UserController::class,'getAuthenticatedUser']);
 Route::group(['middleware' => ['jwt.verify']], function() {

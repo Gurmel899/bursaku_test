@@ -14,9 +14,12 @@ class Kendaraan extends Model
 
       public  function motors(){
         return $this->hashMany(Motor::class);
+
       }
 
        public function mobils(){
        return $this->hashMany(Mobil::class);
+      
        }
+
 }
